@@ -113,7 +113,9 @@ curl -X POST http://localhost:8080/auth-api/public/register \
   -d '{
     "email": "user@example.com",
     "password": "SecurePassword123",
-    "username": "user123"
+    "firstname": "user123",
+    "lastname": "user654",
+    "role": "userrole"
   }'
 ```
 
