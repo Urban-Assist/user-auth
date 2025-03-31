@@ -27,7 +27,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     @Autowired
     private UserRepository userRepository;
     
-    @Value("${app.oauth2.redirectUri:http://localhost:5173/oauth2/redirect}") //I dont know what is this url for
+    @Value("${app.oauth2.redirectUri:http://advancedweb-vm4.research.cs.dal.ca/oauth2/redirect}")  
     private String redirectUri;
 
     @Override
