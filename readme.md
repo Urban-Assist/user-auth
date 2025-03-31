@@ -303,7 +303,7 @@ We welcome contributions! Here's how you can help:
 ## 📞 Need Help?
 
 - 📧 **Email**: vaibhavpatel162002@gmail.com
-- 🌐 **Website**: [Home Repair Support](https://homerepairapp.com)
+- 🌐 **Website**: [Home Repair Support]([https://homerepairapp.com](http://advancedweb-vm4.research.cs.dal.ca/))
 - 🗨️ **Community**: [Join our Discord](https://discord.gg/homerepair)
 
 🚀 **Happy Coding** 🚀.
