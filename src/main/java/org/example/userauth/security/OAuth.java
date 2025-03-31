@@ -2,6 +2,7 @@ package org.example.userauth.security;
 
  
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -164,7 +165,13 @@ private PasswordEncoder passwordEncoder;
                        String jwtToken = jwtUtil.generateToken(userDetails);
                         System.out.println("JWT token generated successfully. ✅" );
                         System.out.println("JWT token: " + jwtToken);   
-                        return ResponseEntity.ok(Collections.singletonMap("token", jwtToken));
+
+                        // Include the token and redirect URL in the response
+                        Map<String, String> response = new HashMap<>();
+                        response.put("token", jwtToken);
+                        response.put("redirectUrl", "http://advancedweb-vm4.research.cs.dal.ca/dashboard");
+
+                        return ResponseEntity.ok(response);
             
                  }
 
