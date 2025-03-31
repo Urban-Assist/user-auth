@@ -80,7 +80,7 @@ private PasswordEncoder passwordEncoder;
                 params.add("scope", "https://www.googleapis.com/auth/userinfo.email openid");
 
                 //This should be the same as the one used in the authorization request
-                params.add("redirect_uri", "https://developers.google.com/oauthplayground");
+                params.add("redirect_uri", "http://advancedweb-vm4.research.cs.dal.ca/auth-api/public/OAuth/callback");
                 params.add("grant_type", "authorization_code");
 
                 //2.2 Creating headers, to be sent to the google auth server
