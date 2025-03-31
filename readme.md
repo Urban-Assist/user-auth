@@ -249,18 +249,6 @@ EMAIL_SERVER_URL="http://email.server/mail/send"
 
 ---
 
-## 📜 User Flow Diagrams
-
-### 📝 User Registration Flow
-
-![User Registration Flow](./assets/user_registration_flow.png)
-
-### 🔐 User Authentication Flow
-
-![User Authentication Flow](./assets/user_authentication_flow.png)
-
----
-
 ## ✅ Next Steps
 
 🎯 Once the environment variables are set, you can proceed with:
