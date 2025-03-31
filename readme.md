@@ -104,12 +104,50 @@ npm test
 
 ### Public Endpoints
 - **POST** `/auth-api/public/register`: Register a new user.
+
+### Example Request
+
+```bash
+curl -X POST http://localhost:8080/auth-api/public/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "user@example.com",
+    "password": "SecurePassword123",
+    "username": "user123"
+  }'
+```
+
 - **POST** `/auth-api/public/authenticate`: Authenticate a user.
+
+```bash
+curl -X POST http://localhost:8080/auth-api/public/authenticate \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "user@example.com",
+    "password": "SecurePassword123"
+  }'
+```
+
 - **GET** `/auth-api/public/email-verification`: Verify email using a token.
+
+```bash
+curl -X GET "http://localhost:8080/auth-api/public/email-verification?token=your_verification_token"
+```
 
 ### Secured Endpoints
 - **GET** `/auth-api/user/profile`: Get user profile (requires JWT).
+
+```bash
+curl -X GET http://localhost:8080/auth-api/user/profile \
+  -H "Authorization: Bearer <JWT_TOKEN>"
+```
+
 - **GET** `/auth-api/admin/dashboard`: Admin-only access.
+
+```bash
+curl -X GET http://localhost:8080/auth-api/admin/dashboard \
+  -H "Authorization: Bearer <ADMIN_JWT_TOKEN>"
+```
 
 ---
 
