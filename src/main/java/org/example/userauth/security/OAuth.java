@@ -192,7 +192,7 @@ private PasswordEncoder passwordEncoder;
                         Map<String, String> response = new HashMap<>();
                         response.put("token", jwtToken);
                         response.put("role", "user" );
-                        response.put("redirectUrl", "http://advancedweb-vm4.research.cs.dal.ca/dashboard");
+                        response.put("redirectUrl", "/dashboard");
 
                         return ResponseEntity.ok(response);
             
