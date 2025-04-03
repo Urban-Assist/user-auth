@@ -6,9 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.example.userauth.DTO.UserProfileDTO;
 import org.example.userauth.model.User;
 import org.example.userauth.repository.UserRepository;
 import org.example.userauth.service.UserService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -53,6 +55,15 @@ public class OAuth {
 
    @Autowired
    private JwtUtil jwtUtil;
+
+    @Autowired
+private RabbitTemplate rabbitTemplate;
+
+@Value("${rabbitmq.exchange.name}")
+private String exchange;
+
+@Value("${rabbitmq.routing.key}")
+private String routingKey;
      
 @Autowired
 private PasswordEncoder passwordEncoder;
@@ -151,7 +162,16 @@ private PasswordEncoder passwordEncoder;
                             user.setVerified(true);
                             // set the random password encoded by the bcrypt password encoder
                             user.setPassword(passwordEncoder.encode(UUID.randomUUID().toString()));
-                            userRepository.save(user);
+                           User registeredUser =  userRepository.save(user);
+                            UserProfileDTO profileDTO = new UserProfileDTO(
+                        registeredUser.getEmail(),
+                        registeredUser.getFirstName(),
+                        registeredUser.getLastName(),
+                        registeredUser.getRole()
+
+                                        );
+                            rabbitTemplate.convertAndSend(exchange, routingKey, profileDTO);
+                            System.out.println("Profile data sent to queue ✅");
                             System.out.println("User registered successfully via google ✅" );
                             System.out.println("<-----making the call again------->" );
                             userDetails = userService.loadUserByUsername(email);
@@ -161,6 +181,8 @@ private PasswordEncoder passwordEncoder;
                      
                         // if there is the user in the database then it will set the authentication in the security context
                         System.out.println("User found in the database. ✅" );
+
+                       
                         System.out.println("Setting the authentication in the security context. 📍" );
                        String jwtToken = jwtUtil.generateToken(userDetails);
                         System.out.println("JWT token generated successfully. ✅" );
