@@ -191,6 +191,7 @@ private PasswordEncoder passwordEncoder;
                         // Include the token and redirect URL in the response
                         Map<String, String> response = new HashMap<>();
                         response.put("token", jwtToken);
+                        response.put("role", "user" );
                         response.put("redirectUrl", "http://advancedweb-vm4.research.cs.dal.ca/dashboard");
 
                         return ResponseEntity.ok(response);
